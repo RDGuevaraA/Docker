@@ -1,0 +1,18 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: logeo-php-hpa  # Nombre del HPA, lo puedes cambiar a lo que prefieras
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1  # Aquí es la versión de la API de los Deployments
+    kind: Deployment  # Especificamos que estamos escalando un Deployment
+    name: logeo-php  # El nombre del Deployment que queremos escalar
+  minReplicas: 1  # El número mínimo de réplicas que debe tener el Deployment
+  maxReplicas: 10  # El número máximo de réplicas que el Deployment puede alcanzar
+  metrics:
+    - type: Resource  # Escalamos basándonos en un recurso (como CPU o memoria)
+      resource:
+        name: cpu  # El recurso que estamos monitoreando es la CPU
+        target:
+          type: Utilization  # Utilizamos la métrica de utilización (en porcentaje)
+          averageUtilization: 50  # La utilización promedio de la CPU debe estar al 50%

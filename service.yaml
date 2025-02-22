@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: login  # Aquí pones el nombre de tu servicio
+spec:
+  selector:
+    app: logeo-php  # El selector debe coincidir con la etiqueta de tu Deployment
+  ports:
+    - protocol: TCP
+      port: 80  # El puerto en el que tu servicio estará disponible dentro del clúster
+      targetPort: 80  # El puerto en el que tu contenedor está escuchando
+  type: LoadBalancer  # Exponer la aplicación al tráfico externo

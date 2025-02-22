@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logeo-php-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: logeo-php
+  template:
+    metadata:
+      labels:
+        app: logeo-php
+    spec:
+      containers:
+      - name: logeo-php
+        image: logeo-php:latest  # Asegúrate de que la imagen sea local o que esté bien referenciada
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: myregistrykey  # Solo si necesitas usar un secreto de Docker registry, si no, elimina esta línea

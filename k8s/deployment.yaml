@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-web-deployment
+  labels:
+    app: docker-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: docker-web
+  template:
+    metadata:
+      labels:
+        app: docker-web
+    spec:
+      containers:
+        - name: docker-web
+          image: docker-php-entrypoi:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80

@@ -22,7 +22,7 @@ if (!isset($_SESSION['log'])) {
 
     <div class="login-container">
         <p>Bienvenido <?php echo $_SESSION['log']; ?></p>
-        <a href="close.php"><button>Cerrar sesión</button></a>
+        <a href="../server/close.php"><button>Cerrar sesión</button></a>
 
     </div>
 
